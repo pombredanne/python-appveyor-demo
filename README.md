@@ -17,7 +17,7 @@ This project is meant to document a minimalistic yet working example to help
 other Python project maintainers.
 
 
-Continous integration setup with AppVeyor
+Continuous integration setup with AppVeyor
 -----------------------------------------
 
 The `appveyor.yml` file in this repo configures a Windows build environment for
@@ -38,6 +38,13 @@ In particular:
 
 The content of the `dist/` folder (typically hosting the generated `.whl`
 packages) is archived in the build report (see previous link).
+
+**Note**: it is possible to activate the "Rolling builds" option to
+automatically cancel build on intermediate push events to avoid clogging
+the build queue with useless jobs. However it can be problematic as it can
+cancel builds triggered by direct push to master outside of any PR. Instead
+the `appveyor.yml` file of this repo uses a specific powershell snippet
+to quickly fail if a newer build is queued for the same PR.
 
 
 Building and testing locally from source
@@ -67,7 +74,7 @@ Finally run the tests (from any folder by the source tree):
 Under Windows will need a Windows SDK to build the compiled
 extension with the MSVC++ compilers. See the following for details:
 
-  https://github.com/cython/cython/wiki/64BitCythonExtensionsOnWindows
+  https://github.com/cython/cython/wiki/CythonExtensionsOnWindows
 
 
 Credits
